@@ -44,6 +44,7 @@ echo -e "\033[1;33m 2)\033[0m Lancer Zphisher (Phishing)"
 echo -e "\033[1;33m 3)\033[0m Vérifier mon IP \033[0;32m(Sécurité VPN)\033[0m"
 echo -e "\033[1;33m 4)\033[0m Nettoyer les traces (Logs)"
 echo -e "\033[1;33m 5)\033[0m Contacter l'auteur (WhatsApp)"
+8) Lancer John the Ripper
 echo -e "\033[0;31m 6) Quitter\033[0m"
 echo -e "\033[0;34m-----------------------------------------\033[0m"
 
@@ -64,3 +65,5 @@ case $choix in
     *) ./pro_menu.sh ;;
 esac
 
+elif [[ $choice == "8" ]]; then
+    ~/john/run/john
