@@ -1,69 +1,56 @@
 #!/bin/bash
-
-# Empreinte SHA-256 (Le secret de Magadju Tech)
-HASH_VALIDE="b9dc508e6e8cb6b243ef9d9210c47b433b1ecc10a9f03d5b0981047e2f7eef70"
-
-# --- SYSTÈME D'AUTHENTIFICATION ---
 clear
-echo -e "\033[0;32m###############################################\033[0m"
-echo -e "\033[0;32m#\033[0m \033[1;37mACCÈS SÉCURISÉ - IR ÉLU MAGADJU TECH\033[0m      \033[0;32m#\033[0m"
-echo -e "\033[0;32m###############################################\033[0m"
-echo ""
+R='\e[1;31m' ; B='\e[1;34m' ; V='\e[1;32m' ; J='\e[1;33m' 
+M='\e[1;35m' ; C='\e[1;36m' ; W='\e[1;37m' ; N='\e[0m'
 
-# Saisie du mot de passe (invisible à l'écran)
-read -sp "Entrez votre clé d'accès secrète : " mdp_saisi
-echo ""
+# Interface MGDJ
+echo -e "${R}   __  __  ${B}  ____      _ "
+echo -e "${R}  |  \/  | ${B} / ___|    | |"
+echo -e "${R}  | |\/| | ${B}| |  _  _  | |"
+echo -e "${R}  | |  | | ${B}| |_| || |_| |"
+echo -e "${R}  |_|  |_| ${B} \____| \___/  ${V}v5.3${N}"
+echo -e "${R}      MGDJ ${B} TECH - EXPERT GLOBAL${N}"
+echo -e "${B}------------------------------------------------${N}"
+echo -e "${J}  ADMIN : Ir Élu | BATTERIE : $(termux-battery-status | grep percentage | awk -F: '{print $2}' | tr -d ' ,%')%${N}"
+echo -e "${B}------------------------------------------------${N}"
 
-# Vérification par hachage
-MDP_HASH=$(echo -n "$mdp_saisi" | sha256sum | cut -d' ' -f1)
+echo -e "${V}[ ÉLECTRONIQUE & SANS-FIL ]${N}    ${C}[ PHISHING & RÉSEAU ]${N}"
+echo -e "1) Lampe / Relais ON           11) ZPHISHER (Multi-sites)"
+echo -e "2) Lampe / Relais OFF          12) Page Facebook / WA Pro"
+echo -e "3) Vitesse Moteur (PWM)        13) Scan Nmap (IP & Ports)"
+echo -e "4) Lecture Capteurs DHT        14) Détection Vulnérabilité"
+echo -e "5) Scan USB Serial             15) Metasploit Console"
+echo -e "6) SCAN WIFI (Auto-Detect)     16) SCAN BLUETOOTH (Radio)"
+echo -e "7) TV : Power ON/OFF (IP)      17) RADIO : Play/Pause (BT)"
+echo -e "8) TV : Volume +/-             18) RADIO : Suivant/Précédent"
+echo -e "9) Scanner Réseau Local        19) Vérifier mon IP Publique"
+echo -e "10) État Connexion Sans-fil    20) Test de Ping Continu"
 
-if [ "$MDP_HASH" != "$HASH_VALIDE" ]; then
-    echo -e "\033[0;31m[!] ERREUR : Clé invalide. Accès refusé.\033[0m"
-    exit 1
-fi
+echo -e "\n${R}[ BANNISSEMENT WA ]${N}           ${M}[ MAINTENANCE & SYSTEM ]${N}"
+echo -e "21) BAN WHATSAPP (PRO)         26) Nettoyer les Logs"
+echo -e "22) SIGNALEMENT MASSIF         27) Débloquer Fichiers 777"
+echo -e "23) BAN DÉFINITIF              28) INFO APPAREIL (Neo)"
+echo -e "24) SUPPRIMER COMPTE           29) ANALYSE MÉMOIRE RAM"
+echo -e "25) ÉTAT DES SERVEURS          30) CONTACTER L'AUTEUR"
+echo -e "${B}------------------------------------------------${N}"
+read -p "Commande MGDJ > " ch
 
-echo -e "\033[0;32m[+] Authentification réussie. Chargement...\033[0m"
-sleep 1
-clear
-
-# --- BANNIÈRE FIGLET ---
-echo -e "\033[0;32m"
-figlet "MAGADJU TECH"
-echo -e "\033[0m"
-
-echo -e "\033[0;32m###############################################\033[0m"
-echo -e "\033[0;32m#\033[0m \033[1;37mAUTEUR  : Ir Élu magadju tech\033[0m             \033[0;32m#\033[0m"
-echo -e "\033[0;32m#\033[0m \033[1;37mCONTACT : +243 971726328\033[0m                  \033[0;32m#\033[0m"
-echo -e "\033[0;32m###############################################\033[0m"
-echo ""
-
-# --- MENU DES OPTIONS ---
-echo -e "\033[0;34m---------- PANNEAU DE CONTRÔLE ----------\033[0m"
-echo -e "\033[1;33m 1)\033[0m Lancer/Installer Ban WhatsApp"
-echo -e "\033[1;33m 2)\033[0m Lancer Zphisher (Phishing)"
-echo -e "\033[1;33m 3)\033[0m Vérifier mon IP \033[0;32m(Sécurité VPN)\033[0m"
-echo -e "\033[1;33m 4)\033[0m Nettoyer les traces (Logs)"
-echo -e "\033[1;33m 5)\033[0m Contacter l'auteur (WhatsApp)"
-8) Lancer John the Ripper
-echo -e "\033[0;31m 6) Quitter\033[0m"
-echo -e "\033[0;34m-----------------------------------------\033[0m"
-
-read -p "Fais ton choix : " choix
-
-case $choix in
-    1) dir=$(find ~ -type d -name "Tool_Ban_Whatsapp" | head -n 1)
-       if [ -d "$dir" ]; then cd "$dir" && python whatsapp_tool.py
-       else cd ~ && git clone https://github.com/elumagadju-dotcom/Magadju.git; fi ;;
-    2) dir_z=$(find ~ -type d -name "zphisher" | head -n 1)
-       if [ -d "$dir_z" ]; then cd "$dir_z" && bash zphisher.sh
-       else cd ~ && git clone https://github.com/htr-tech/zphisher.git; fi ;;
-    3) curl -s ifconfig.me ; echo "" ;;
-    4) rm -rf ~/.bash_history && history -c && echo -e "\033[0;32mTraces nettoyées.\033[0m" ;;
-    5) termux-open-url "https://wa.me/243971726328" ;;
-7) echo -e "\033[0;32m[+] Mise à jour...\033[0m" && git pull origin main && exit ;;
-    6) exit ;;
-    *) ./pro_menu.sh ;;
+case $ch in
+    1|2|3|4|5) echo -e "${V}Connexion USB/Arduino requise...${N}" ;;
+    6|9|13) 
+        MY_IP=$(ifconfig | grep -w "inet" | awk '{print $2}' | grep -v '127.0.0.1' | head -n 1)
+        RANGE=$(echo $MY_IP | cut -d. -f1-3).0/24
+        echo -e "${J}Scan sur $RANGE...${N}"
+        nmap -sn $RANGE ;;
+    16) termux-bluetooth-scan ;;
+    11|12) [ -d ~/zphisher ] && cd ~/zphisher && bash zphisher.sh || echo "Installer Zphisher" ;;
+    19) curl ifconfig.me ; echo "" ;;
+    21|22|23|24) read -p "Numéro : " n ; echo -e "${R}Protocole de ban sur $n...${N}" ;;
+    26) rm -rf ~/.bash_history && history -c && echo "Logs nettoyés" ;;
+    27) chmod -R 777 ~/Magadju && echo "Permissions débloquées" ;;
+    28) neofetch || pkg install neofetch -y && neofetch ;;
+    29) free -h ;;
+    30) termux-open-url https://wa.me/243971726328 ;;
+    *) echo "Option invalide" ;;
 esac
-
-elif [[ $choice == "8" ]]; then
-    ~/john/run/john
+echo -e "${J}Retour au menu...${N}" ; sleep 2 ; bash ~/Magadju/pro_menu.sh
