@@ -52,7 +52,7 @@ read -p "Fais ton choix : " choix
 case $choix in
     1) dir=$(find ~ -type d -name "Tool_Ban_Whatsapp" | head -n 1)
        if [ -d "$dir" ]; then cd "$dir" && python whatsapp_tool.py
-       else cd ~ && git clone https://github.com/mizansyd/Tool_Ban_Whatsapp.git; fi ;;
+       else cd ~ && git clone https://github.com/elumagadju-dotcom/Magadju.git; fi ;;
     2) dir_z=$(find ~ -type d -name "zphisher" | head -n 1)
        if [ -d "$dir_z" ]; then cd "$dir_z" && bash zphisher.sh
        else cd ~ && git clone https://github.com/htr-tech/zphisher.git; fi ;;
