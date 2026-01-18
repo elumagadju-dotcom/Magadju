@@ -59,6 +59,7 @@ case $choix in
     3) curl -s ifconfig.me ; echo "" ;;
     4) rm -rf ~/.bash_history && history -c && echo -e "\033[0;32mTraces nettoyées.\033[0m" ;;
     5) termux-open-url "https://wa.me/243971726328" ;;
+7) echo -e "\033[0;32m[+] Mise à jour...\033[0m" && git pull origin main && exit ;;
     6) exit ;;
     *) ./pro_menu.sh ;;
 esac
